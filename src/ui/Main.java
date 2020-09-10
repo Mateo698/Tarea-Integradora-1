@@ -33,7 +33,7 @@ public class Main{
 	
 	}
 	
-	public static void mostrarDatos(Scanner in){
+	public static void showData(Scanner in){
 		int quantity = askQuantity(in);
 		String[] materialsName = new String[quantity];
 		int[] priceHomeCenter = new int[quantity];
@@ -53,13 +53,33 @@ public class Main{
 		System.out.println("El precio para la ferreteria del centro es "+ Operations.priceForPlace(priceFC));
 		System.out.println("El precio para la ferreteria del barrio es "+ Operations.priceForPlace(priceFB));
 		
+		int[] bestPrice = new int[quantity];
+		int[] bestIndex = new int[quantity];
+		bestPrice = Operations.bestPrice(priceHomeCenter, priceFC, priceFB);
+		bestIndex = Operations.bestIndex(priceHomeCenter, priceFC, priceFB);
+		
+		for(int i=0; i<quantity; i++){
+			switch(bestIndex[i]){
+				case 1:
+					System.out.println("El mejor lugar para comprar "+materialsName[i]+" es en HomeCenter con un precio de"+bestPrice[i]);
+				break;
+				
+				case 2:
+					System.out.println("El mejor lugar para comprar "+materialsName[i]+" es en la ferreteria del centro con un precio de"+bestPrice[i]);
+				break;
+				
+				case 3:
+					System.out.println("El mejor lugar para comprar "+materialsName[i]+" es en la ferreteria del barrio con un precio de"+bestPrice[i]);
+				break;
+				
+				deafult:
+			}
+		}
 	}
 	
 	public static void main(String[] args){
 		Scanner in = new Scanner(System.in);
-		
-		for(int i=0; i<quantity ; i++){
-			System.out.println(materialsName[i] + " " + priceHomeCenter[i] + " " + priceFC[i] + " " + priceFB[i] + utility[i]);
-		}
+		showData(in);
 	}
+}
 }
