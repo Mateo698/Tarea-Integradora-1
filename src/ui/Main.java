@@ -3,16 +3,12 @@ import model.*;
 import java.util.Scanner;
 public class Main{
 	
-	public static String askName(Scanner in){
-		System.out.println("Ingrese el  nombre del producto");
-		String name = in.nextLine();
-		in.nextLine();
-		return name;
-	}
+
 	
 	public static int askQuantity(Scanner in){
 		System.out.println("Ingrese la cantidad de materiales que desea ingresar");
 		int quantity = in.nextInt();
+		in.nextLine();
 		return quantity;
 	}
 	
@@ -20,7 +16,6 @@ public class Main{
 		String[] material = new String[5];
 		System.out.println("Ingrese el nombre del producto");
 		material[0] = in.nextLine();
-		in.nextLine();
 		System.out.println("Ingrese el precio para Home Center");
 		material[1] = in.nextLine();
 		System.out.println("Ingrese el precio para la Ferreteria del centro");
@@ -61,19 +56,24 @@ public class Main{
 		for(int i=0; i<quantity; i++){
 			switch(bestIndex[i]){
 				case 1:
-					System.out.println("El mejor lugar para comprar "+materialsName[i]+" es en HomeCenter con un precio de"+bestPrice[i]);
+					System.out.println("El mejor lugar para comprar "+materialsName[i]+" es en HomeCenter con un precio de "+bestPrice[i]);
 				break;
 				
 				case 2:
-					System.out.println("El mejor lugar para comprar "+materialsName[i]+" es en la ferreteria del centro con un precio de"+bestPrice[i]);
+					System.out.println("El mejor lugar para comprar "+materialsName[i]+" es en la ferreteria del centro con un precio de "+bestPrice[i]);
 				break;
 				
 				case 3:
-					System.out.println("El mejor lugar para comprar "+materialsName[i]+" es en la ferreteria del barrio con un precio de"+bestPrice[i]);
+					System.out.println("El mejor lugar para comprar "+materialsName[i]+" es en la ferreteria del barrio con un precio de "+bestPrice[i]);
 				break;
 				
-				deafult:
+				default:
 			}
+		}
+		
+		for(int i=0; i<quantity; i++){
+			System.out.println(materialsName[i] + " " + priceHomeCenter[i] + " " + priceFC[i] + " " + priceFB[i]);
+			
 		}
 	}
 	
@@ -82,4 +82,4 @@ public class Main{
 		showData(in);
 	}
 }
-}
+
