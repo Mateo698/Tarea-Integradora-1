@@ -5,9 +5,9 @@ public class Main{
 	
 	/**
 	*Read the quantity through the console<br>
-	*<b>pre: </b> La variable de la cantidad debe estar inicializada. <br>
-	*<b>post: </b> Devuelve la cantidad de materiales para la obra. <br>
-	*@param in debe haber sido inicializado
+	*<b>pre: </b> Quantity variable must be initialized . <br>
+	*<b>post:</b> Returns the number of different materials nedeed for the construction <br>
+	*@param in must be initialized
 	*/
 	public static int askQuantity(Scanner in){
 		System.out.println("Ingrese la cantidad de materiales diferentes que desea ingresar");
@@ -16,6 +16,15 @@ public class Main{
 		return quantity;
 	}
 	
+	/**
+	*It's a menu that allows the user to choose which kind of materials wants to see <br>
+	*<b>pre: </b> Materials utility list must be already defined <br>
+	*<b>post: </b> Shows the materials for the utility selected by the user <br>
+	*@param materialsName List of the materials names. materialsName[i] != null
+	*@param quantity Amount of materials. quantity>0
+	*@param utility List of the use of each material. 3=>utility>=1
+	*@param in Scanner must be declared.
+	*/
 	public static void showUtility(String[] materialsName, int quantity, int[] utility, Scanner in){
 		boolean end = false;
 		for(int p=1; p!=0 && !end; p++){
@@ -76,10 +85,10 @@ public class Main{
 	}
 	
 	/**
-	*Lee la ubicacion del inmueble<br>
-	*<b>pre: </b> La variable location debe haber sido inicializada. <br>
-	*<b>post: </b> Devuelve un entero el cual indica la ubicacion del inmueble. <br>
-	*@param in debe haber sido inicializado.
+	*Reads the location where the property is located.<br>
+	*<b>pre: </b> The location variable must be initialized. <br>
+	*<b>post: </b> Returns a number that indicates the location of the property. <br>
+	*@param in must be declared.
 	*/
 	public static int askLocation(Scanner in){
 		System.out.println("Ingrese 1 si su inmueble se encuentra en el norte, 2 si esta en el centro y 3 si esta en el sur");
@@ -89,10 +98,10 @@ public class Main{
 	}
 	
 	/**
-	*Lee los precios para un producto en las 3 ferreterias y su utilizacion<br>
-	*<b>pre: </b> El array auxiliar que va a capturar el array generado que se usara para distribuir los datos en los respectivos arrays debe estar inicializado. <br>
-	*<b>post:</b> Devuelve un array con los datos necesarios. <br>
-	*@param in debe haber sido inicializado
+	*Reads the name of the material, the amount needed of the material, it's price for the 3 different stores and the materials utility<br>
+	*<b>pre: </b> The materials information array (auxiliary array) must be initialized. <br>
+	*<b>post:</b> Returns an array with the information of an specific material. <br>
+	*@param in must be initialized.
 	*/
 	public static String[] askForMaterials(Scanner in){
 		String[] material = new String[6];
@@ -113,10 +122,10 @@ public class Main{
 	}
 	
 	/**
-	*Calcula y muestra los datos del problema tales como los precios, mejores precios y valores a pagar<br>
+	*Show the information needed for the construction.<br>
 	*<b>pre: </b>  <br>
-	*<b>post: </b> Muestra los mejores precios y los precios totales a pagar. <br>
-	*@param in Scanner debe haber sido declarado.
+	*<b>post: </b> Shows the best materials prices, where to buy them and the final price for each store and for the best prices with the delivery price. <br>
+	*@param in must be initialized.
 	*/
 	public static void showData(Scanner in){
 		int location = askLocation(in);

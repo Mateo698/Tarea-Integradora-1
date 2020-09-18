@@ -2,15 +2,17 @@ package model;
 
 public class Operations{
 	
-	private final static int blackWork = 1300000;
-	private final static int whiteWork = 2600000;
-	private final static int painting = 980000;
+	private final static int ROUGHWORK = 1300000;
+	private final static int SOFTWORK = 2600000;
+	private final static int PAINTING = 980000;
 	
 	/**
-	*Genera el total a pagar para cada establecimiento mas la mano de obra<br>
-	*<b>pre: </b> La lista de precios para la tienda debe haber sido incializada y declarada. <br>
-	*<b>post: </b> Se genera el total a pagar <br>
-	*@param HarwareStore Tienda a calcular precio total. HardwareStore[i] >= 0
+	*Generate the final price to pay at each store with the work cost included<br>
+	*<b>pre: </b> The total variable must already be initialized. <br>
+	*<b>post: </b> Calculates the final price to pay for each store with the work cost included <br>
+	*@param HarwareStore Store prices. HardwareStore[i] >= 0
+	*@param quantity Amount of each material. quantity[i] > 0
+	*@param location Number that indicates the location of the property. 3=>location>=1
 	*/
 	public static int priceForPlace(int[] HardwareStore, int[] quantity, int location){
 		int total = 0;
@@ -45,17 +47,17 @@ public class Operations{
 			default:
 			
 		}
-		total = total + blackWork + whiteWork + painting;
+		total = total + ROUGHWORK + SOFTWORK + PAINTING;
 		return total;
 	}
 	
 	/**
-	*Genera el array con los mejores precios para cada producto de las 3 tiendas<br>
-	*<b>pre: </b> La listas de precios deben haber sido incializadas y declaradas con numeros naturales. <br>
-	*<b>post: </b> Devuelve la lista o array con los mejores precios de las 3 tiendas. <br>
-	*@param HC Precios en HomeCenter. HC[i]>=0
-	*@param FC Precios en la ferreteria del centro. FC[i]>=0
-	*@param FB Precios en la ferretreria del barrio. FB[i]>=0
+	*Generates an array with the best prices among the three stores.<br>
+	*<b>pre: </b> The array for the best prices must already be intialized. <br>
+	*<b>post: </b> Return the list with the best prices. <br>
+	*@param HC Prices for HomeCenter. HC[i]>=0
+	*@param FC Prices for la ferreteria del centro. FC[i]>=0
+	*@param FB Prices for la ferretreria del barrio. FB[i]>=0
 	*/
 	public static int[] bestPrice(int[] HC, int[] FC, int[] FB){
 		int[] best = new int[HC.length];
@@ -76,12 +78,12 @@ public class Operations{
 	}
 	
 	/**
-	*Genera un array con el index identificador que identifica donde se compra el producto al mejor precio.<br>
-	*<b>pre: </b> La listas de precios deben haber sido incializadas y declaradas con numeros naturales. <br>
-	*<b>post: </b> Devuelve la lista o array con los mejores precios de las 3 tiendas. <br>
-	*@param HC Precios en HomeCenter. HC[i]>=0
-	*@param FC Precios en la ferreteria del centro. FC[i]>=0
-	*@param FB Precios en la ferretreria del barrio. FB[i]>=0
+	*Generates an array with the index of the store with the best price for each material.<br>
+	*<b>pre: </b> The array for the best prices store index must be already intialized. <br>
+	*<b>post: </b> Returns the array with the index for the store with the best prices. <br>
+	*@param HC Prices for HomeCenter. HC[i]>=0
+	*@param FC Prices for la ferreteria del centro. FC[i]>=0
+	*@param FB Prices for la ferretreria del barrio. FB[i]>=0
 	*/
 	public static int[] bestIndex(int[] HC, int[] FC, int[] FB){
 		int[] bestIndex = new int[HC.length];
@@ -101,11 +103,12 @@ public class Operations{
 	}
 	
 	/**
-	*Genera el precio a pagar de todos los productos a su mejor precio junto con el valor del domicilio.<br>
-	*<b>pre: </b> Los precios para cada tienda deben haber sido declarados. <br>
-	*<b>post: </b> Devuelve el precio a pagar por los productos. <br>
-	*@param bestPrices Lista de los mejores precios. bestPrices[i]>=0
-	*@param location Entero que indica la ubicacion del inmueble. 3>=location>=1
+	*Generates the final cost of the products including the delivery.<br>
+	*<b>pre: </b> The variable for the final price must be already initialized.<br>
+	*<b>post: </b> Returns the cost of the products and it's delivery. <br>
+	*@param bestPrices List of the best prices among the 3 stores. bestPrices[i]>=0
+	*@param quantity List with the amount needed of each material. quantity[i]>0
+	*@param location Integer that indicates the location of the property. 3>=location>=1
 	*/
 	public static int finalPrice(int[] bestPrices,int[] quantity, int location){
 		int total= 0;
