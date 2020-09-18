@@ -12,10 +12,38 @@ public class Operations{
 	*<b>post: </b> Se genera el total a pagar <br>
 	*@param HarwareStore Tienda a calcular precio total. HardwareStore[i] >= 0
 	*/
-	public static int priceForPlace(int[] HardwareStore){
+	public static int priceForPlace(int[] HardwareStore, int[] quantity, int location){
 		int total = 0;
 		for(int i=0; i<HardwareStore.length; i++){
-			total += HardwareStore[i];
+			total += HardwareStore[i]*quantity[i];
+		}
+		switch(location){
+			case 1:
+				if(total<80000){
+					total += 120000;
+				}
+				else if(total<300000){
+					total += 28000;
+				}			
+			break;
+			
+			case 2:
+				if(total<80000){
+					total += 50000;
+				}
+			break;
+			
+			case 3:
+				if(total<80000){
+					total += 120000;
+				}
+				else if(total<300000){
+					total += 55000;
+				}	
+			break;
+			
+			default:
+			
 		}
 		total = total + blackWork + whiteWork + painting;
 		return total;
@@ -79,10 +107,10 @@ public class Operations{
 	*@param bestPrices Lista de los mejores precios. bestPrices[i]>=0
 	*@param location Entero que indica la ubicacion del inmueble. 3>=location>=1
 	*/
-	public static int finalPrice(int[] bestPrices, int location){
+	public static int finalPrice(int[] bestPrices,int[] quantity, int location){
 		int total= 0;
 		for(int i=0; i<bestPrices.length; i++){
-			total += bestPrices[i];
+			total += bestPrices[i]*quantity[i];
 		}
 		switch(location){
 			case 1:
